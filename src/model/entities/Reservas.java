@@ -38,14 +38,23 @@ public class Reservas {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 	
-	public void atualizacaoData(Date checkIn, Date checkOut) {
+	public String  atualizacaoData(Date checkIn, Date checkOut) {
+		Date now = new Date();
+		if(checkIn.before(now) || checkOut.before(now)) {
+			return "erro na reserva: Data de check-out deve ser posterior à data de check-in ";
+		}
+		
+		if(!checkOut.after(checkIn)) {
+			return "erro na reserva: Data de check-out deve ser posterior à data de check-in ";
+		}
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		return null;
 	}
 	
 	@Override
 	public String toString() {
-		return "Room "
+		return "Quarto "
 				+ numeroQuarto
 				+ ", check-in: "
 				+ sdf.format(checkIn)

@@ -17,9 +17,9 @@ public class Program {
 		
 		System.out.print("Numero quarto: ");
 		int numero = sc.nextInt();
-		System.out.print("Check-in data (dd/MM/yyyy)");
+		System.out.print("Check-in data (dd/MM/yyyy): ");
 		Date checkIn =  sdf.parse(sc.next());
-		System.out.print("Check-out data (dd/MM/yyyy)");
+		System.out.print("Check-out data (dd/MM/yyyy): ");
 		Date checkOut =  sdf.parse(sc.next());
 		
 		if(!checkOut.after(checkIn)) {
@@ -36,13 +36,19 @@ public class Program {
 			System.out.print("Check-out data (dd/MM/yyyy)");
 			checkOut =  sdf.parse(sc.next());
 			
-			reserva.atualizacaoData(checkIn, checkOut);
-			System.out.println("Reserva" + reserva);
+	
+							
+			String error = reserva.atualizacaoData(checkIn, checkOut);
+			if(error != null) {
+				System.out.println("Erro em reserva: " + error);
 		}
+		else {
+				System.out.println("Reserva: " + reserva);
 		
-		
+		}	
 		
 		sc.close();
 	}
 
+}
 }
